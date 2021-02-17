@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--EB All of my edits will have my initials at the beginning. - Ezra Boersma-->
+<!--EB Appropriate Licensing has been obtained for all assets used in the creation of this webpage.-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BOS Ltd Services and Contact">
+    <meta name="author" content="Ezra Boersma">
+    <title>Contact Form - Boersma Oilfields Services</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/pe-icons.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!--EB Recycle JQuery Carousel for form Background-->
+    <!--EB JAVASCRIPT FORM VALIDATIONS--><script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            'use strict';
+            jQuery('body').backstretch([
+                /*EB  Customized hero image, photos and background fade  */
+                "images/bg/bg11-min.jpg",  /* https://www.pexels.com/photo/brown-and-white-factory-building-during-night-time-3855962/ */
+                "images/bg/bg12-min.jpg",  /*EB https://www.pexels.com/photo/aerial-view-of-body-of-water-288100/  */
+                "images/bg/bg15-min.jpg",  /*EB https://pixabay.com/photos/the-road-beams-path-forest-nature-815297/  */
+                "images/bg/bg13-min.jpg",  /*EB https://hdwallpaperim.com/road-winter-landscape-nature/ */
+                "images/bg/bg10-min.jpg"  /*EB https://pixabay.com/photos/milky-way-galaxy-night-sky-stars-984050/ */
+            ], { duration: 5000, fade: 1200, centeredY: true });
+            /*EB Map settings */
+            $("#mapwrapper").gMap({
+                controls: true, /*EB User can pan around the map */
+                scrollwheel: false, /*EB User can not adjust map scroll */
+                markers: [{
+                    latitude: 56.5496783,
+                    longitude: -115.3149578,
+                    icon: {  /*EB Custom map marker */
+                        image: "images/marker.png",
+                        iconsize: [44, 44],
+                        iconanchor: [12, 46],
+                        infowindowanchor: [12, 0]
+                    }
+                }],
+                /*EB  Located in Red Earth Creek, Alberta  */
+                latitude: 56.5496783,
+                longitude: -115.3149578,
+                zoom: 12,
+                mapTypeId: 'terrain',
+            });
+        });
+    </script>
+    <!--EB  WIP:These are two simple methods to validate the email and name fields.
+    I tried to have a minimum character limit on the name validation, but I couldnt get the syntax perfect so I settled for this.
+    Note that the fields are still listed as required by HTML to prevent the page refresh when the methods return false..-->
+
+    <script type="text/javascript">
+
+        function email_function() {
+            var email = document.getElementById("email").value;
+            if (email == "") {
+                alert("An email address is needed to send a message.");
+                return false;
+            }
+
+        }
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            if (name == "") { /*  tried to grab ("name").length  and check if (name <= 2) but this code would break. */
+                alert("Please enter your whole name.");
+                return false;
+            }
+
+        }
+
+    </script>
+    <!--EB WIP: AJAX content
+     /* EB JQuery AJAX add map div to form page It almost works, the map doesnt show yet. If I had more time. */
+    -->
+    
+   <!-- <script>
+       
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#divmap").attr("id", "mapwrapper");
+                $("#divmap1").attr("id", "map");
+            });
+
+        });
+
+    </script> -->
+
+
+    <style>
+        /*EB use specificity to force the form inputs to be styled */
+        #contactform input#name,
+        #contactform input#email,
+        #contactform input#date,
+        #contactform input#phoneNum,
+        #contactform textarea#messages {
+            width: 100%;
+            padding: 10px 5px;
+            margin-bottom: 15px;
+            background-color: rgba(246, 245, 245, 0.883);
+            color: #030303;
+            border: none;
+
+        }
+    </style>
+
+
+</head>
+<!--/head-->
+
+<body>
+
+
+    <!--EB Custom Preloader gif animation-->
+    <div id="preloader"></div>
+    <header class="navbar navbar-inverse navbar-fixed-top " role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <h1><span class="pe-7s-tools bounce-in"></span> B. O. S. <sup>Ltd</sup> </h1>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!--EB Trimmed the nav bar and customized the location.-->
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <i
+                                class="icon-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="formpage.html">Wellsite Management</a></li>
+                            <li><a href="formpage.html">Call-In Support</a></li>
+                            <li><a href="formpage.html">Consulting Services</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#formfill">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--/header-->
+
+    <!--EB The Services-->
+
+    <div id="content-wrapper">
+        <section id="services" class="white">
+            <div class="container">
+                <div class="gap"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="center gap fade-down section-heading">
+                            <h2 class="main-title">Oilfields Services</h2>
+                            <hr>
+                            <p>We're resourceful and knowledgeable, capable of carrying out day-to-day operation
+                                maintenance tasks.
+                                </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--/.row-->
+                <div class="gap"></div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="service-block">
+                            <div class="pull-left bounce-in">
+                                <a href="#form"><i class="fa fa-eye fa fa-md"></i></a>
+                            </div>
+                            <div class="media-body fade-up">
+                                <h3 class="media-heading">Wellsite Management</h3>
+                                <p>Trained and certified, with over 10 years of patch experience,
+                                    We have the professional individuals you're looking for. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-md-4-->
+                    <div class="col-md-4 col-sm-12">
+                        <div class="service-block">
+                            <div class="pull-left bounce-in">
+                                <a href="#form"><i class="fa fa-bolt fa fa-md"></i></a>
+                            </div>
+                            <div class="media-body fade-up">
+                                <h3 class="media-heading"> Call-in Support</h3>
+                                <p>If you need to deploy a worker quickly to a remote site, we're the local experts for
+                                    the job.
+                                    From our remote base, we can be on-site in just a matter of hours.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-md-4-->
+                    <div class="col-md-4 col-sm-12">
+                        <div class="service-block">
+                            <div class="pull-left bounce-in">
+                                <a href="#form"><i class="fa fa-handshake-o fa fa-md"></i></a>
+                            </div>
+                            <div class="media-body fade-up">
+                                <h3 class="media-heading">Everyday Operation Services</h3>
+                                <p>We can be contracted as operators for any of your oilfield site operation needs. We
+                                    are accepting short and long term contracts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-md-4-->
+                </div>
+                <!--/.row-->
+            </div>
+            <div class="gap"></div>
+            <div class="gap"></div>
+        </section>
+
+
+            <!--EB WIP: JQuery AJAX add map div to form page It almost works, the map doesnt show yet. If I had more time. -->
+
+            <!--EB This is the button that creates the map div on the form page.   
+                
+                <div class="gap"></div>
+
+            <button id="btn1">This is a button</button>
+            <div id="divmap">
+                <div id="divmap1">
+
+                </div>
+            </div>   -->
+
+
+            
+
+            <section id="single-quote" class="divider-section">
+                <div class="container" id="form">
+                    <div class="gap"></div>
+                    <div class="row">
+                        <div class='col-md-offset-2 col-md-6 fade-up'>
+                            <div id="consultform" class="center gap fade-down section-heading">
+                                <h2 class="main-title">Request an Appointment</h2>
+                                <hr>
+                                <p>Get in touch over phone, video-call, or we can meet in person.</p>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="row">
+                                <div class="col-md-4  fade-up">
+                                    <h3>Contact Information</h3>
+                                    <p>Red Earth Creek, Alberta, Canada<br />
+                                        1 (780)-649-4190<br />
+                                        jesse.boersma@bos.com <br />
+                                        Boersma Oilfields Services <br />
+                                    </p>
+                                </div><!-- col -->
+
+
+                                <!--EB Main Contact Form-->
+                                <div class="col-md-8 fade-up" id="formfill">
+                                    <h3>Drop Us A Message</h3>
+                                    <br>
+                                    <br>
+                                    <div id="message"></div>
+
+                                    <form name="contactform" id="contactform" method="POST"
+                                        action="https://dev.itas.ca/~croftd/processForm.php">
+
+                                        <input type="text" name="name" id="name" placeholder="Name"
+                                            required="required" />
+                                        <!--EB Requirement is enabled here to stop the page refreshing when invalid info is entered-->
+
+                                        <input type="email" name="email" id="email" placeholder="Email"
+                                            required="required" />
+                                        <!--EB Requirement is enabled here to stop the page refreshing when invalid info is entered-->
+
+                                        <input type="tel" name="phoneNum" id="phoneNum" placeholder="Ph#: 123 456 7890"
+                                            pattern="[0-9]{3} [0-9]{3} [0-9]{4}" />
+
+                                        <input type="date" name="date" id="date" required="required" />
+
+                                        <textarea name="messages" id="messages"
+                                            placeholder="Additional Info..."></textarea>
+
+                                        <!--EB  Default unchecked Urgent Call -->
+                                        <div>
+                                            <input type="checkbox" name="URGENT" id="urgentCallBtn">
+                                            <label class="urgentCallBtn" for="urgentCallBtn">
+                                                Urgent Request</label>
+
+                                        </div>
+
+
+                                        <!--EB Custom Styled Submit Button
+                                        Button onclick calls the two custom validation methods-->
+
+                                        <input style="margin-left: 42%;" class="btn btn-outlined btn-success"
+                                            onclick="validateForm();email_function();" type="submit" name="submit" />
+                                    </form>
+
+
+                                </div><!-- col -->
+                            </div><!-- row -->
+
+
+                        </div>
+                    </div>
+                    <div class="gap"></div>
+                </div>
+            </section>
+
+
+             <!--EB About Us section-->
+             <section id="about-us" class="white">
+                <div class="container" id="aboutus">
+                    <div class="gap"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="center gap fade-down section-heading">
+
+                                <h2 class="main-title">Northern Roots</h2>
+                                <hr>
+                                <p>Welcome to Red Earth Creek, Alberta. We're in our element - and we can help you.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 fade-up">
+                            <p>Any good project starts with a solid foundation, and we want to share our experience with
+                                the industry. Based in the wilderness of Northern Canada, Boersma Oilfields Services brings you local
+                                expertise and professionalism, that you can rely on.</p>
+
+                            <p>As second generation operators from a small community, we understand the importance of
+                                doing a good job for our employer, and for our community.
+                                We have experience with jobs big, and small. From rig set-up, to daily site management,
+                                to equipment transportation - keep us as your reliable on-call contact.
+                            </p>
+
+                                <p>Our team will provide the necessary expertise right from the planning stages to
+                                execution of your project. From project management to field operations,
+                                we'll ensure your project is both cost effective and operational, as access to your
+                                lease is critical with the adverse terrain found within our industry.
+                            </p>
+                        </div>
+                        <div class="col-md-4 fade-up">
+
+                        </div>
+                    </div>
+                
+                    <div class="gap" id="meetus"></div>
+
+                               <!--EB Meet the Team Section-->
+                    <div class="gap"></div>
+                    <div class="center gap fade-down section-heading">
+                        <h2 class="main-title">Meet The Team</h2>
+                        <hr>
+                        <p>Local </p>
+                    </div>
+                    <div class="gap"></div>
+
+                    <div id="meet-the-team" class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="center team-member">
+                                <div class="team-image">
+                                    <img class="img-responsive img-thumbnail bounce-in" src="images/team/team01.jpg"
+                                        alt="Team Member 1">
+                                    <div class="overlay">
+                                        <a class="preview btn btn-outlined btn-primary"
+                                            href="images/team/team01.jpg" rel="prettyPhoto"><i
+                                                class="fa fa-eye"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-content fade-up">
+                                    <h5>Jesse Boersma<small class="role muted">Oilfield Operations Specialist</small>
+                                    </h5>
+                                    <p>Specialist with over 10 years of field experience. Jesse is the founder and owner
+                                        of Boersma Oilfields Services. He specializes in consulting operations for
+                                        large-scale remote production operations.<br>
+                                        <br><i class="fa fa-sm fa-phone"></i> 1 (780) 649 4190
+                                    </p>
+                                    <a class="btn btn-social btn-facebook"
+                                        href="https://www.facebook.com/Boersma-Oilfield-Services-104663261499928"><i
+                                            class="fa fa-facebook"></i></a> <a class="btn btn-social btn-twitter"
+                                        href="https://twitter.com/BoersmaOilfield"><i class="fa fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 col-xs-12">
+                            <div class="center team-member">
+                                <div class="team-image">
+                                    <img class="img-responsive img-thumbnail bounce-in" src="images/team/team03.jpg"
+                                        alt="Team Member 2">
+                                    <div class="overlay">
+                                        <a class="preview btn btn-outlined btn-primary"
+                                            href="images/team/team03.jpg" rel="prettyPhoto"><i
+                                                class="fa fa-eye"></i></a>
+                                    </div>
+                                </div>
+                                <div class="team-content fade-up">
+                                    <h5>Ezra Boersma<small class="role muted">Onsite Tech Specialist</small></h5>
+                                    <p>Technology and communications system expert, specializing in optimizing and
+                                        engineering technological solutions.
+                                        Currently booking projects after June 2021.<br>
+                                        <br><i class="fa fa-sm fa-phone"></i> 1 (250) 741 6484
+                                    </p>
+                                    <a class="btn btn-social btn-facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                    <a class="btn btn-social btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                </div>
+                            </div>
+
+
+                            <!--/#meet-the-team-->
+                            <div class="gap"></div>
+                            <div class="gap"></div>
+                        </div>
+                        </div>
+                </div>
+            </section>
+            </div>
+    
+
+
+    <!--EB Contact Footer-->
+    <div id="footer-wrapper">
+        <section id="bottom" class="">
+            <div class="gap"></div>
+            <div class="container">
+                <div class="row section-heading">
+                    <h3 class="main-title" style="text-align: center;">Where Do We Save You?</h3>
+                    <hr>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="center bounce-in">
+                            <span class="stat-icon"><span class="pe-7s-stopwatch bounce-in"></span></span>
+                            <h1><span class="counter">75</span>&#37;</h1>
+                            <h3>FEWER HOURS DRIVEN</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="center bounce-in">
+                            <span class="stat-icon"><span class="pe-7s-wallet bounce-in"></span></span>
+                            <h1><span class="counter">90</span>&#37;</h1>
+                            <h3>CAMP AND TRAVEL EXPENSES</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="center bounce-in">
+                            <span class="stat-icon"><span class="pe-7s-ticket bounce-in"></span></span>
+                            <h1><span class="counter"> 90</span>&#37;</h1>
+                            <h3>CERTIFICATION & TRAINING</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap"></div>
+            </div>
+        </section>
+
+        <!--/#bottom-->
+
+        <footer id="footer" class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        &copy; 2020 Ezra Boersma. Powered By IMPACT.
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        <ul class="pull-right">
+                            <li><a id="gototop" class="gototop" href="#"><i class="fa fa-chevron-up"></i></a></li>
+                            <!--#gototop-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--/#footer-->
+    </div>
+    
+
+
+    <script src="js/plugins.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh7Yk_WZh5s3nWzWjjJsLcbBDfqdrlens&amp;sensor=true"></script>
+    <script src="js/init.js"></script>
+</body>
+
+</html>
